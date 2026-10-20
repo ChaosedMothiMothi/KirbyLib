@@ -10,7 +10,9 @@ internal class Program
         {
             string path = Path.GetFullPath(args[0]);
 
-            string outpath = Path.GetDirectoryName(path) + "\\" + Path.GetFileNameWithoutExtension(path);
+            string outpath = Path.Combine(
+                Path.GetDirectoryName(path) ?? ".",
+                Path.GetFileNameWithoutExtension(path));
 
             MapRtDL map;
             using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
